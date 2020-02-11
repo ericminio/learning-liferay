@@ -1,0 +1,15 @@
+language: java
+services:
+  - postgresql
+  - docker
+addons:
+  firefox: latest
+before_install:
+  - echo $TRAVIS_BUILD_DIR
+  - docker run hello-world
+install:
+  - docker pull liferay/portal:7.2.1-ga2
+before_script:  
+  - psql -c 'create database demo;' -U postgres
+script:
+  - java -version
