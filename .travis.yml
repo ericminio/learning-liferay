@@ -13,3 +13,4 @@ before_script:
   - docker-compose up -d
 script:
   - java -version
+  - docker exec -it  postgres psql -U liferay -d liferay -c 'select now()'
