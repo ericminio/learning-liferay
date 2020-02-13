@@ -11,6 +11,7 @@ install:
   - docker pull liferay/portal:7.2.1-ga2
 before_script:
   - docker-compose up -d
+  - sleep 15
 script:
   - java -version
   - docker exec -it  postgres psql -U liferay -d liferay -c 'select now()'
