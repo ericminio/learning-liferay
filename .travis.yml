@@ -9,7 +9,6 @@ before_install:
   - docker run hello-world
 install:
   - docker pull liferay/portal:7.2.1-ga2
-  - docker pull postgres:12
 before_script:
   - docker-compose up -d
 script:
