@@ -6,7 +6,7 @@ addons:
   firefox: latest
 before_install:
   - echo $TRAVIS_BUILD_DIR
-  - docker run hello-world
+  - docker run --rm hello-world
 install:
   - docker pull liferay/portal:7.2.1-ga2
 before_script:
