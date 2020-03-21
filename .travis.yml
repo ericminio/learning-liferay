@@ -12,8 +12,6 @@ before_script:
   - chmod +x ./wait-for-databases.sh
   - chmod +x ./wait-for-lportal.sh
   - ./wait-for-databases.sh
-  - docker-compose up -d liferay
-  - ./wait-for-lportal.sh
 script:
   - java -version
   - docker ps -a
