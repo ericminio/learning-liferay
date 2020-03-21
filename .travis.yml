@@ -11,6 +11,7 @@ before_script:
   - docker-compose up -d postgres mysql
   - docker-compose run --rm waitforpostgres
   - docker-compose run --rm waitformysql
+  - sleep 7
 script:
   - java -version
   - docker ps -a
