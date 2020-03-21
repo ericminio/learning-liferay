@@ -16,5 +16,6 @@ before_script:
   - sleep 15
 script:
   - java -version
-  - docker-compose exec mysql mysql domain -u domain -pdomain -e "select 'world' as hello"
-  - docker-compose exec postgres psql lportal -U liferay -c "select 'world' as hello"
+  - docker ps -a
+  - docker-compose exec mysql mysql domain -u domain -pdomain -e "select database()"
+  - docker-compose exec postgres psql lportal -U liferay -c "select current_database()"
