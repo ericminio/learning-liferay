@@ -30,17 +30,28 @@ services:
     volumes:
       - ./liferay/mount:/mnt/liferay
 
-  wait:
+  waitformysql:
     image: ubuntu:14.04
     container_name: waiter
-    depends_on:
-      - liferay
     command: >
       /bin/bash -c "
-        while ! nc -z liferay 8080;
+        while ! nc -z mysql 3306;
         do
-          echo waiting...;
+          echo waiting for mysql...;
           sleep 1;
         done;
-        echo ready;
+        echo mysql is ready;
+      "
+  
+  waitforpostgres:
+    image: ubuntu:14.04
+    container_name: waiter
+    command: >
+      /bin/bash -c "
+        while ! nc -z postgres 5432;
+        do
+          echo waiting for postgres...;
+          sleep 1;
+        done;
+        echo postgres is ready;
       "
