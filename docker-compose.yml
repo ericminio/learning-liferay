@@ -2,25 +2,25 @@ version: '3.4'
 
 services:
     
-    postgres:
-      image: postgres:12
-      container_name: postgres
-      ports:
-        - 2345:5432
-      environment:
-        - POSTGRES_DB=lportal
-        - POSTGRES_USER=liferay
-        - POSTGRES_PASSWORD=liferay
+  postgres:
+    image: postgres:12
+    container_name: postgres
+    ports:
+      - 2345:5432
+    environment:
+      - POSTGRES_DB=lportal
+      - POSTGRES_USER=liferay
+      - POSTGRES_PASSWORD=liferay
 
-    mysql:
-      image: mysql:8
-      container_name: mysql
-      ports:
-        - 6789:5432
-      environment:
-        - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-        - MYSQL_ROOT_PASSWORD=domain
-        - MYSQL_DATABASE=domain
-        - MYSQL_USER=domain
-        - MYSQL_PASSWORD=domain
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    ports:
+      - 6789:5432
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_ROOT_PASSWORD=domain
+      - MYSQL_DATABASE=domain
+      - MYSQL_USER=domain
+      - MYSQL_PASSWORD=domain
         
