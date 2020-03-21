@@ -14,5 +14,5 @@ before_script:
 script:
   - java -version
   - docker ps -a
-  - docker-compose exec mysql mysql domain -uroot -pdomain -e "select database()"
+  - docker-compose exec mysql mysql domain -udomain -pdomain -e "select database()"
   - docker-compose exec postgres psql lportal -U liferay -c "select current_database()"
