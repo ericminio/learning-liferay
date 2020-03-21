@@ -9,8 +9,11 @@ before_install:
   - docker run --rm hello-world
 before_script:
   - docker-compose up -d postgres mysql
-  - chmod +x ./wait.sh
-  - ./wait.sh
+  - chmod +x ./wait-for-databases.sh
+  - chmod +x ./wait-for-lportal.sh
+  - ./wait-for-databases.sh
+  - docker-compose up -d liferay
+  - ./wait-for-lportal.sh
 script:
   - java -version
   - docker ps -a
