@@ -21,6 +21,8 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_ROOT_PASSWORD=domain
       - MYSQL_DATABASE=domain
+      - MYSQL_USER=domain
+      - MYSQL_PASSWORD=domain
         
   liferay:
     image: liferay/portal:7.2.1-ga2
@@ -30,28 +32,4 @@ services:
     volumes:
       - ./liferay/mount:/mnt/liferay
 
-  waitformysql:
-    image: ubuntu:14.04
-    container_name: waiter
-    command: >
-      /bin/bash -c "
-        while ! nc -z mysql 3306;
-        do
-          echo waiting for mysql...;
-          sleep 1;
-        done;
-        echo mysql is ready;
-      "
-  
-  waitforpostgres:
-    image: ubuntu:14.04
-    container_name: waiter
-    command: >
-      /bin/bash -c "
-        while ! nc -z postgres 5432;
-        do
-          echo waiting for postgres...;
-          sleep 1;
-        done;
-        echo postgres is ready;
-      "
+      
