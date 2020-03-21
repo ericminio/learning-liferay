@@ -16,13 +16,11 @@ services:
     image: mysql:8
     container_name: mysql
     ports:
-      - 6789:5432
+      - 6789:3306
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_ROOT_PASSWORD=domain
       - MYSQL_DATABASE=domain
-      - MYSQL_USER=domain
-      - MYSQL_PASSWORD=domain
         
   liferay:
     image: liferay/portal:7.2.1-ga2
@@ -31,4 +29,18 @@ services:
       - 8080:8080
     volumes:
       - ./liferay/mount:/mnt/liferay
-      
+
+  wait:
+    image: ubuntu:14.04
+    container_name: waiter
+    depends_on:
+      - liferay
+    command: >
+      /bin/bash -c "
+        while ! nc -z liferay 8080;
+        do
+          echo waiting...;
+          sleep 1;
+        done;
+        echo ready;
+      "

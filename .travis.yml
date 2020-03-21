@@ -7,15 +7,11 @@ addons:
 before_install:
   - echo $TRAVIS_BUILD_DIR
   - docker run --rm hello-world
-install:
-  - docker pull liferay/portal:7.2.1-ga2
-  - docker pull postgres:12
-  - docker pull mysql:8
 before_script:
-  - docker-compose up -d
+  - docker-compose up -d postgres mysql
   - sleep 15
 script:
   - java -version
   - docker ps -a
-  - docker-compose exec mysql mysql domain -u domain -pdomain -e "select database()"
+  - docker-compose exec mysql mysql domain -uroot -pdomain -e "select database()"
   - docker-compose exec postgres psql lportal -U liferay -c "select current_database()"
