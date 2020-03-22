@@ -5,11 +5,11 @@ while ! docker-compose exec mysql mysql domain -udomain -pdomain -e "select data
 do
     sleep 1;
 done;
-echo mysql user domain is ready
+echo mysql database domain is ready
 
 echo waiting for postgres...;
 while ! docker-compose exec postgres psql lportal -U liferay -c "select current_database()";
 do
     sleep 1;
 done;
-echo postgres user liferay is ready;
+echo postgres database lportal is ready;
